@@ -1,0 +1,10 @@
+[book]
+title = "notes"
+authors = ["Big T"]
+description = "The collection of notes, snippets and reminders about tools I've had experience with"
+language = "en"
+multilingual = false
+src = "src"
+
+[output.html]
+git-repository-url = "https://github.com/swivelmargarita/notes"
