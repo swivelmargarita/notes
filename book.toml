@@ -6,5 +6,20 @@ language = "en"
 multilingual = false
 src = "src"
 
+
 [output.html]
 git-repository-url = "https://github.com/swivelmargarita/notes"
+additional-css = ["./mdbook-admonish.css", "theme/pagetoc.css", ]
+additional-js = ["theme/pagetoc.js"]
+
+
+# Table of Contents
+[preprocessor.theme]
+pagetoc = true
+turn-off = true
+
+
+#Fancy admontions like note, warning, error etc.
+[preprocessor.admonish]
+command = "mdbook-admonish"
+assets_version = "3.0.3" # do not edit: managed by `mdbook-admonish install`
