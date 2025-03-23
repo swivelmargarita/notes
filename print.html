@@ -169,11 +169,29 @@ status of the <code>cd /tmp</code>, <code>exit</code> command will always be run
 <pre><code class="language-bash">cd /tmp || echo "cd to /tmp failed"; exit
 # Exits anyways even if cd was succesful
 </code></pre>
-<pre><code class="language-admonish note">In `bash` you may treat `;` as an equilent of a newline.
-</code></pre>
-<pre><code class="language-admonish note">Use `{ cmds }` to group a list of commands that will be executed in the current
-shell. At the other hand, `( cmds )` will execute the `cmds` in a subshell.
-</code></pre>
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
+<div class="admonition-title">
+<div id="admonition-note-title">
+<p>Note</p>
+</div>
+<a class="admonition-anchor-link" href="languages/bash.html#admonition-note"></a>
+</div>
+<div>
+<p>In <code>bash</code> you may treat <code>;</code> as an equilent of a newline.</p>
+</div>
+</div>
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
+<div class="admonition-title">
+<div id="admonition-note-1-title">
+<p>Note</p>
+</div>
+<a class="admonition-anchor-link" href="languages/bash.html#admonition-note-1"></a>
+</div>
+<div>
+<p>Use <code>{ cmds }</code> to group a list of commands that will be executed in the current
+shell. At the other hand, <code>( cmds )</code> will execute the <code>cmds</code> in a subshell.</p>
+</div>
+</div>
 <h4 id="dont-forget-the-"><a class="header" href="#dont-forget-the-">Don't forget the <code>;</code></a></h4>
 <pre><code class="language-bash">$ bash
 $ cd /tmp || { echo "cd to /tmp failed"; exit }
@@ -183,19 +201,34 @@ $ cd /tmp || { echo "cd to /tmp failed"; exit }
 &gt; ^C
 $
 </code></pre>
-<pre><code class="language-admonish warning">When using command grouping with curly braces '{', always end the list of
-commands inside the curly braces with a semicolon and a space ';\&lt;space\&gt;' like
-this:
-
-```bash
-$ cd /tmp || { echo "cd to /tmp failed"; exit; }
-```
+<div id="admonition-warning" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-title">
+<div class="admonition-title">
+<div id="admonition-warning-title">
+<p>Warning</p>
+</div>
+<a class="admonition-anchor-link" href="languages/bash.html#admonition-warning"></a>
+</div>
+<div>
+<p>When using command grouping with curly braces '{', always end the list of
+commands inside the curly braces with a semicolon and a space ';&lt;space&gt;' like
+this:</p>
+<pre><code class="language-bash">$ cd /tmp || { echo "cd to /tmp failed"; exit; }
 </code></pre>
-<pre><code class="language-admonish success">```bash
-[t@olympus notes]$ cd /tmp || { echo "cd to /tmp failed"; exit; }
+</div>
+</div>
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
+<div class="admonition-title">
+<div id="admonition-success-title">
+<p>Success</p>
+</div>
+<a class="admonition-anchor-link" href="languages/bash.html#admonition-success"></a>
+</div>
+<div>
+<pre><code class="language-bash">[t@olympus notes]$ cd /tmp || { echo "cd to /tmp failed"; exit; }
 [t@olympus tmp]$
-```
 </code></pre>
+</div>
+</div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="python"><a class="header" href="#python">Python</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="regex"><a class="header" href="#regex">Regex</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="virtualization"><a class="header" href="#virtualization">Virtualization</a></h1>
