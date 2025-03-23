@@ -30,6 +30,8 @@
         <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="./mdbook-admonish.css">
+        <link rel="stylesheet" href="theme/pagetoc.css">
 
 
         <!-- Provide site root to javascript -->
@@ -156,8 +158,65 @@
 
                 <div id="content" class="content">
                     <main>
+                        <!-- Page table of contents -->
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+
                         <h1 id="languages"><a class="header" href="#languages">Languages</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="bash-notes"><a class="header" href="#bash-notes">Bash Notes</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bash"><a class="header" href="#bash">Bash</a></h1>
+<h3 id="group-commands-without-subshell-with-"><a class="header" href="#group-commands-without-subshell-with-">Group commands without subshell with '{}'</a></h3>
+<p>Following command does not do the result one might expect. Regardless of the exit
+status of the <code>cd /tmp</code>, <code>exit</code> command will always be run.</p>
+<pre><code class="language-bash">cd /tmp || echo "cd to /tmp failed"; exit
+# Exits anyways even if cd was succesful
+</code></pre>
+<pre><code class="language-admonish note">In `bash` you may treat `;` as an equilent of a newline.
+</code></pre>
+<pre><code class="language-admonish note">Use `{ cmds }` to group a list of commands that will be executed in the current
+shell. At the other hand, `( cmds )` will execute the `cmds` in a subshell.
+</code></pre>
+<h4 id="dont-forget-the-"><a class="header" href="#dont-forget-the-">Don't forget the <code>;</code></a></h4>
+<pre><code class="language-bash">$ bash
+$ cd /tmp || { echo "cd to /tmp failed"; exit }
+&gt;
+&gt;
+&gt;
+&gt; ^C
+$
+</code></pre>
+<pre><code class="language-admonish warning">When using command grouping with curly braces '{', always end the list of
+commands inside the curly braces with a semicolon and a space ';\&lt;space\&gt;' like
+this:
+
+```bash
+$ cd /tmp || { echo "cd to /tmp failed"; exit; }
+```
+</code></pre>
+<pre><code class="language-admonish success">```bash
+[t@olympus notes]$ cd /tmp || { echo "cd to /tmp failed"; exit; }
+[t@olympus tmp]$
+```
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="python"><a class="header" href="#python">Python</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="regex"><a class="header" href="#regex">Regex</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="virtualization"><a class="header" href="#virtualization">Virtualization</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="qemu"><a class="header" href="#qemu">QEMU</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="docker"><a class="header" href="#docker">Docker</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tools"><a class="header" href="#tools">Tools</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ansible"><a class="header" href="#ansible">Ansible</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="neovim"><a class="header" href="#neovim">Neovim</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jenkins"><a class="header" href="#jenkins">Jenkins</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ripgrep"><a class="header" href="#ripgrep">ripgrep</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="grep"><a class="header" href="#grep">grep</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="cloud"><a class="header" href="#cloud">Cloud</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="gcp"><a class="header" href="#gcp">GCP</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="aws"><a class="header" href="#aws">AWS</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="linux"><a class="header" href="#linux">Linux</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="arch"><a class="header" href="#arch">Arch</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="alpine"><a class="header" href="#alpine">Alpine</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="suckless"><a class="header" href="#suckless">Suckless</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="dwm"><a class="header" href="#dwm">dwm</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="dmenu"><a class="header" href="#dmenu">dmenu</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="dwmblocks"><a class="header" href="#dwmblocks">dwmblocks</a></h1>
 
                     </main>
 
@@ -193,6 +252,7 @@
         <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
+        <script src="theme/pagetoc.js"></script>
 
         <script>
         window.addEventListener('load', function() {

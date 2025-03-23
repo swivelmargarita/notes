@@ -140,8 +140,8 @@ html:not(.js) .left-buttons button {
     top: 0;
     bottom: 0;
     margin: 0;
-    max-width: 150px;
-    min-width: 90px;
+    max-width: auto;
+    min-width: auto;
 
     display: flex;
     justify-content: center;
@@ -413,7 +413,7 @@ ul#searchresults span.teaser em {
     top: 0;
     bottom: 0;
     width: var(--sidebar-width);
-    font-size: 0.875em;
+    font-size: 1em;
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-y: contain;
@@ -522,7 +522,7 @@ html:not(.sidebar-resizing) .sidebar {
 .chapter {
     list-style: none outside none;
     padding-inline-start: 0;
-    line-height: 2.2em;
+    line-height: 2em;
 }
 
 .chapter ol {
@@ -592,7 +592,7 @@ html:not(.sidebar-resizing) .sidebar {
 .section {
     list-style: none outside none;
     padding-inline-start: 20px;
-    line-height: 1.9em;
+    line-height: 1.5em;
 }
 
 /* Theme Menu Popup */

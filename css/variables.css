@@ -2,14 +2,24 @@
 /* Globals */
 
 :root {
-    --sidebar-width: 300px;
+    --sidebar-width: 180px;
     --sidebar-resize-indicator-width: 8px;
     --sidebar-resize-indicator-space: 2px;
     --page-padding: 15px;
-    --content-max-width: 750px;
-    --menu-bar-height: 50px;
+    --content-max-width: 80%;
+    --menu-bar-height: 40px;
     --mono-font: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace;
     --code-font-size: 0.875em; /* please adjust the ace font size accordingly in editor.js */
+    --pagetoc-width: 13%;
+    --pagetoc-fontsize: 14px;
+
+    --inline-margin-start: 5%;
+}
+
+@media only screen and (max-width:1439px) {
+ :root{
+    --content-max-width: 98%;
+  }
 }
 
 /* Themes */
