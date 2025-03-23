@@ -9,7 +9,10 @@ src = "src"
 
 [output.html]
 git-repository-url = "https://github.com/swivelmargarita/notes"
-additional-css = ["./mdbook-admonish.css", "theme/pagetoc.css", ]
+additional-css = [
+    "theme/mdbook-admonish.css",
+    "theme/pagetoc.css",
+]
 additional-js = ["theme/pagetoc.js"]
 
 
