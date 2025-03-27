@@ -9,6 +9,7 @@
 - [Virtualization](./virtualization/README.md)
     - [QEMU](./virtualization/qemu.md)
     - [Docker](./virtualization/docker.md)
+    - [Podman](./virtualization/podman.md)
 
 - [Tools(DevOps)](./tools/README.md)
     - [Ansible](./tools/ansible.md)
@@ -18,11 +19,12 @@
     - [grep](./tools/grep.md)
 
 - [Cloud](./cloud/README.md)
-    - [GCP](./tools/gcp.md)
-    - [AWS](./tools/aws.md)
+    - [GCP](./cloud/gcp.md)
+    - [AWS](./cloud/aws.md)
 
 - [Linux](./linux/README.md)
     - [Arch](./linux/arch.md)
+        - [pacman](./linux/arch/pacman.md)
     - [Alpine](./linux/alpine.md)
 
 - [Suckless](./suckless/README.md)
