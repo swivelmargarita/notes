@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Docker - notes</title>
+        <title>GCP - notes</title>
 
 
         <!-- Custom HTML head -->
@@ -160,17 +160,49 @@
                         <!-- Page table of contents -->
                         <div class="sidetoc"><nav class="pagetoc"></nav></div>
 
-                        <h1 id="docker"><a class="header" href="#docker">Docker</a></h1>
+                        <h1 id="gcp"><a class="header" href="#gcp">GCP</a></h1>
+<h2 id="artifact-registy"><a class="header" href="#artifact-registy">Artifact Registy</a></h2>
+<h3 id="make-an-artifact-repository-publicly-readable-by-all-users"><a class="header" href="#make-an-artifact-repository-publicly-readable-by-all-users">Make an artifact repository publicly readable by all users</a></h3>
+<pre><code class="language-bash">$ gcloud artifacts repositories add-iam-policy-binding &lt;repository&gt; \
+    --role=roles/artifactregistry.reader
+    --member=allUsers \
+    --project=&lt;project&gt; \
+    --location=&lt;location&gt;
+</code></pre>
+<div id="admonition-example" class="admonition admonish-example" role="note" aria-labelledby="admonition-example-title">
+<div class="admonition-title">
+<div id="admonition-example-title">
+<p>Example</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-example"></a>
+</div>
+<div>
+<pre><code class="language-bash">$ gcloud artifacts repositories add-iam-policy-binding eu.gcr.io \
+    --member=allUsers \
+    --role=roles/artifactregistry.reader
+    --project=my-project \
+    --location=europe \
+
+Updated IAM policy for repository [eu.gcr.io].
+bindings:
+- members:
+  - allUsers
+  role: roles/artifactregistry.reader
+etag: ...
+version: 1
+</code></pre>
+</div>
+</div>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../virtualization/qemu.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../cloud/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../virtualization/podman.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../cloud/aws.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -180,11 +212,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../virtualization/qemu.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../cloud/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../virtualization/podman.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../cloud/aws.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

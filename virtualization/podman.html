@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>GCP - notes</title>
+        <title>Podman - notes</title>
 
 
         <!-- Custom HTML head -->
@@ -160,17 +160,55 @@
                         <!-- Page table of contents -->
                         <div class="sidetoc"><nav class="pagetoc"></nav></div>
 
-                        <h1 id="gcp"><a class="header" href="#gcp">GCP</a></h1>
+                        <h1 id="podman"><a class="header" href="#podman">Podman</a></h1>
+<h3 id="pulling-images-from-dockerhub"><a class="header" href="#pulling-images-from-dockerhub">Pulling images from dockerhub</a></h3>
+<p>Make sure to use <code>docker.io/</code> at the beginning of the image name:</p>
+<div id="admonition-fail" class="admonition admonish-failure" role="note" aria-labelledby="admonition-fail-title">
+<div class="admonition-title">
+<div id="admonition-fail-title">
+<p>Fail</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-fail"></a>
+</div>
+<div>
+<pre><code class="language-bash">$ docker pull thinca/vim
+Error: short-name "thinca/vim" did not resolve to an alias and no unqualified-search registries are defined in "/etc/containers/registries.conf"
+</code></pre>
+</div>
+</div>
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
+<div class="admonition-title">
+<div id="admonition-success-title">
+<p>Success</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
+</div>
+<div>
+<pre><code class="language-bash">$ docker pull docker.io/thinca/vim
+
+Trying to pull docker.io/thinca/vim:latest...
+Getting image source signatures
+Copying blob 4f4fb700ef54 done   |
+Copying blob 31e352740f53 done   |
+Copying blob 59ee4629b0a1 done   |
+Copying blob ec144417bad2 done   |
+Copying blob 864275e25a89 done   |
+Copying config c92399797b done   |
+Writing manifest to image destination
+c92399797bab01a245189a4f168a0308f94f37daca1ec560251bceb70b0dbbc9`
+</code></pre>
+</div>
+</div>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../cloud/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../virtualization/docker.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../tools/aws.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../tools/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -180,11 +218,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../cloud/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../virtualization/docker.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../tools/aws.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../tools/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

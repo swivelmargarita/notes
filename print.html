@@ -231,9 +231,58 @@ this:</p>
 </div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="python"><a class="header" href="#python">Python</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="regex"><a class="header" href="#regex">Regex</a></h1>
+<h3 id="concepts"><a class="header" href="#concepts">Concepts</a></h3>
+<h4 id="character-classes-"><a class="header" href="#character-classes-">Character classes '[]'</a></h4>
+<h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
+<h4 id=""><a class="header" href="#"></a></h4>
+<h4 id="-1"><a class="header" href="#-1"></a></h4>
+<h4 id="-2"><a class="header" href="#-2"></a></h4>
+<h4 id="-3"><a class="header" href="#-3"></a></h4>
+<h4 id="-4"><a class="header" href="#-4"></a></h4>
+<h4 id="-5"><a class="header" href="#-5"></a></h4>
+<h4 id="-6"><a class="header" href="#-6"></a></h4>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="virtualization"><a class="header" href="#virtualization">Virtualization</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="qemu"><a class="header" href="#qemu">QEMU</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="docker"><a class="header" href="#docker">Docker</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="podman"><a class="header" href="#podman">Podman</a></h1>
+<h3 id="pulling-images-from-dockerhub"><a class="header" href="#pulling-images-from-dockerhub">Pulling images from dockerhub</a></h3>
+<p>Make sure to use <code>docker.io/</code> at the beginning of the image name:</p>
+<div id="admonition-fail" class="admonition admonish-failure" role="note" aria-labelledby="admonition-fail-title">
+<div class="admonition-title">
+<div id="admonition-fail-title">
+<p>Fail</p>
+</div>
+<a class="admonition-anchor-link" href="virtualization/podman.html#admonition-fail"></a>
+</div>
+<div>
+<pre><code class="language-bash">$ docker pull thinca/vim
+Error: short-name "thinca/vim" did not resolve to an alias and no unqualified-search registries are defined in "/etc/containers/registries.conf"
+</code></pre>
+</div>
+</div>
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
+<div class="admonition-title">
+<div id="admonition-success-title">
+<p>Success</p>
+</div>
+<a class="admonition-anchor-link" href="virtualization/podman.html#admonition-success"></a>
+</div>
+<div>
+<pre><code class="language-bash">$ docker pull docker.io/thinca/vim
+
+Trying to pull docker.io/thinca/vim:latest...
+Getting image source signatures
+Copying blob 4f4fb700ef54 done   |
+Copying blob 31e352740f53 done   |
+Copying blob 59ee4629b0a1 done   |
+Copying blob ec144417bad2 done   |
+Copying blob 864275e25a89 done   |
+Copying config c92399797b done   |
+Writing manifest to image destination
+c92399797bab01a245189a4f168a0308f94f37daca1ec560251bceb70b0dbbc9`
+</code></pre>
+</div>
+</div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="tools"><a class="header" href="#tools">Tools</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ansible"><a class="header" href="#ansible">Ansible</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="neovim"><a class="header" href="#neovim">Neovim</a></h1>
@@ -242,9 +291,117 @@ this:</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="grep"><a class="header" href="#grep">grep</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cloud"><a class="header" href="#cloud">Cloud</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="gcp"><a class="header" href="#gcp">GCP</a></h1>
+<h2 id="artifact-registy"><a class="header" href="#artifact-registy">Artifact Registy</a></h2>
+<h3 id="make-an-artifact-repository-publicly-readable-by-all-users"><a class="header" href="#make-an-artifact-repository-publicly-readable-by-all-users">Make an artifact repository publicly readable by all users</a></h3>
+<pre><code class="language-bash">$ gcloud artifacts repositories add-iam-policy-binding &lt;repository&gt; \
+    --role=roles/artifactregistry.reader
+    --member=allUsers \
+    --project=&lt;project&gt; \
+    --location=&lt;location&gt;
+</code></pre>
+<div id="admonition-example" class="admonition admonish-example" role="note" aria-labelledby="admonition-example-title">
+<div class="admonition-title">
+<div id="admonition-example-title">
+<p>Example</p>
+</div>
+<a class="admonition-anchor-link" href="cloud/gcp.html#admonition-example"></a>
+</div>
+<div>
+<pre><code class="language-bash">$ gcloud artifacts repositories add-iam-policy-binding eu.gcr.io \
+    --member=allUsers \
+    --role=roles/artifactregistry.reader
+    --project=my-project \
+    --location=europe \
+
+Updated IAM policy for repository [eu.gcr.io].
+bindings:
+- members:
+  - allUsers
+  role: roles/artifactregistry.reader
+etag: ...
+version: 1
+</code></pre>
+</div>
+</div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="aws"><a class="header" href="#aws">AWS</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="linux"><a class="header" href="#linux">Linux</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="arch"><a class="header" href="#arch">Arch</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="pacman"><a class="header" href="#pacman">pacman</a></h1>
+<h2 id="pacman--f-file-operations"><a class="header" href="#pacman--f-file-operations">pacman -F, file operations</a></h2>
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
+<div class="admonition-title">
+<div id="admonition-tip-title">
+<p>Tip</p>
+</div>
+<a class="admonition-anchor-link" href="linux/arch/pacman.html#admonition-tip"></a>
+</div>
+<div>
+<p>Download file database</p>
+<pre><code>pacman -Fy
+</code></pre>
+</div>
+</div>
+<div id="admonition-tip-1" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-1-title">
+<div class="admonition-title">
+<div id="admonition-tip-1-title">
+<p>Tip</p>
+</div>
+<a class="admonition-anchor-link" href="linux/arch/pacman.html#admonition-tip-1"></a>
+</div>
+<div>
+<p>Find which package owns a file, for example <code>/usr/bin/rg</code></p>
+<pre><code>$ pacman -F /usr/bin/rg
+
+usr/bin/rg is owned by extra/ripgrep 14.1.1-1
+</code></pre>
+</div>
+</div>
+<div id="admonition-tip-2" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-2-title">
+<div class="admonition-title">
+<div id="admonition-tip-2-title">
+<p>Tip</p>
+</div>
+<a class="admonition-anchor-link" href="linux/arch/pacman.html#admonition-tip-2"></a>
+</div>
+<div>
+<p>Search with regex. For example search which packages provides a man page for docker:</p>
+<pre><code>$ pacman -Fx '\bdocker\.1\.gz$'
+
+extra/docker 1:28.0.1-1
+    usr/share/man/man1/docker.1.gz
+extra/podman-docker 5.4.1-1 [installed]
+    usr/share/man/man1/docker.1.gz
+</code></pre>
+</div>
+</div>
+<div id="admonition-tip-3" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-3-title">
+<div class="admonition-title">
+<div id="admonition-tip-3-title">
+<p>Tip</p>
+</div>
+<a class="admonition-anchor-link" href="linux/arch/pacman.html#admonition-tip-3"></a>
+</div>
+<div>
+<p>List the files owned by the a package, for example <code>unrar</code></p>
+<pre><code>$ pacman -Fl unrar
+
+unrar usr/bin/unrar
+unrar usr/share/licenses/unrar/LICENSE
+</code></pre>
+</div>
+</div>
+<div id="admonition-tip-4" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-4-title">
+<div class="admonition-title">
+<div id="admonition-tip-4-title">
+<p>Tip</p>
+</div>
+<a class="admonition-anchor-link" href="linux/arch/pacman.html#admonition-tip-4"></a>
+</div>
+<div>
+<pre><code>
+</code></pre>
+</div>
+</div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="alpine"><a class="header" href="#alpine">Alpine</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="suckless"><a class="header" href="#suckless">Suckless</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dwm"><a class="header" href="#dwm">dwm</a></h1>
