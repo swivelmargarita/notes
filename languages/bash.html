@@ -222,11 +222,169 @@ this:</p>
 <a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
-<pre><code class="language-bash">[t@olympus notes]$ cd /tmp || { echo "cd to /tmp failed"; exit; }
-[t@olympus tmp]$
+<pre><code class="language-bash">$ cd /tmp || { echo "cd to /tmp failed"; exit; }
+$
 </code></pre>
 </div>
 </div>
+<p>References</p>
+<ul>
+<li>Bash idioms, 2022</li>
+</ul>
+<hr />
+<h3 id="output-redirection"><a class="header" href="#output-redirection">Output redirection</a></h3>
+<p>When bash starts it opens three file descriptors:</p>
+<ol>
+<li>stdin -&gt; File descriptor(fd) 0</li>
+<li>stdout -&gt; fd 1</li>
+<li>stderr -&gt; fd 2</li>
+</ol>
+<p>Assuming your terminal is <code>/dev/tty0</code>, here is how the file descriptor table
+looks like when bash starts:<br />
+<img src="images/initial-fd-table.png" alt="" /></p>
+<p>You can also open, close and copy file descriptors. And you can also write to
+them and read from them.</p>
+<h4 id="redirect-the-standard-output-of-a-command-to-a-file"><a class="header" href="#redirect-the-standard-output-of-a-command-to-a-file">Redirect the standard output of a command to a file</a></h4>
+<pre><code class="language-bash">command &gt;file
+</code></pre>
+<p>Operator <code>&gt;</code> is the output redirection operator. Bash first tries to open the
+file for writing and if it succeeds it sends the stdout of command to the newly
+opened file. If it fails opening the file, the whole command fails.</p>
+<div id="admonition-note-2" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-2-title">
+<div class="admonition-title">
+<div id="admonition-note-2-title">
+<p>Note</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-2"></a>
+</div>
+<div>
+<p>Writing <code>command &gt;file</code> is the same as writing <code>command 1&gt;file</code>.</p>
+</div>
+</div>
+<p>When you write the command above, bash opens the <code>file</code> and and replaces the fd
+1 with the fd that points to the file. The result is that all the standard
+output gets redirected, or in anoter words, ends up being written to <code>file</code><br />
+<img src="images/redirect-stdout.png" alt="" /></p>
+<div id="admonition-example" class="admonition admonish-example" role="note" aria-labelledby="admonition-example-title">
+<div class="admonition-title">
+<div id="admonition-example-title">
+<p>Example</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-example"></a>
+</div>
+<div>
+<p>Redirects text "test_text" to a file:</p>
+<pre><code class="language-bash">echo test_text &gt; /tmp/file
+</code></pre>
+</div>
+</div>
+<h4 id="redirect-the-standard-error-of-a-command-to-a-file"><a class="header" href="#redirect-the-standard-error-of-a-command-to-a-file">Redirect the standard error of a command to a file</a></h4>
+<pre><code class="language-bash">command 2&gt; file
+</code></pre>
+<p>Here bash redirects stderr to file:<br />
+<img src="images/redirect-stderr.png" alt="" /><br />
+Bash opens <code>file</code> for writing, replaces fd 2 with th fd of <code>file</code>.
+Effectively, anything written to the stderr gets redirected to the <code>file</code>.</p>
+<h4 id="redirect-both-standard-output-and-standard-error-to-a-file"><a class="header" href="#redirect-both-standard-output-and-standard-error-to-a-file">Redirect both standard output and standard error to a file</a></h4>
+<pre><code class="language-bash">command &amp;&gt;file
+</code></pre>
+<p><code>&amp;&gt;</code> operator redirects both stdout and sterr of the <code>command</code> to <code>file</code>.
+This is bash's shortcut for quickly redirecting both streams to the same
+destination.<br />
+Here is how the file descriptor table looks like after bash has redirected both
+streams:<br />
+<img src="images/redirect-stdout-stderr.png" alt="" /></p>
+<div id="admonition-example-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-example-1-title">
+<div class="admonition-title">
+<div id="admonition-example-1-title">
+<p>Example</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-example-1"></a>
+</div>
+<div>
+<p>Here we're trying to check if we've installed <code>trash-cli</code> package. And set
+variable if so.<br />
+If we don't have the binary <code>trash</code>, it will give <code>command not found</code>
+error:</p>
+<pre><code class="language-bash">$ trash -h &amp;&amp; export NNN_TRASH=1
+
+bash: trash: command not found
+</code></pre>
+<p>We can redirect stderr and stdout like this:</p>
+<pre><code class="language-bash">$ trash -h &amp;&gt;/dev/null &amp;&amp; export NNN_TRASH=1
+$
+</code></pre>
+<p>or</p>
+<pre><code class="language-bash">$ trash -h&gt;/dev/null 2&amp;&gt;1 &amp;&amp; export NNN_TRASH=1
+$
+</code></pre>
+</div>
+</div>
+<p style="font-size:1.3em">Another way to redirect both streams to the same destination:</p>  
+<pre><code class="language-bash">command &gt;file 2&gt;&amp;1
+# Same as command 1&gt;file 2&gt;&amp;1
+</code></pre>
+<p>First, bash opens the file <code>file</code> for writing. And then reassigns file
+descriptor 1 to point to that file. Effectively command <code>command</code>'s
+stdout(remember that stdout's fd is 1) gets written to <code>file</code>.</p>
+<p>We didn't see the <code>&gt;&amp;</code> syntax, that is <a href="https://www.gnu.org/software/bash/manual/html_node/Redirections.html#Duplicating-File-Descriptors">file descriptor
+duplication</a>.</p>
+<div id="admonition-quote" class="admonition admonish-quote" role="note" aria-labelledby="admonition-quote-title">
+<div class="admonition-title">
+<div id="admonition-quote-title">
+<p>Quote</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-quote"></a>
+</div>
+<div>
+<pre><code class="language-c">int dup2(int fd1, int fd2);
+</code></pre>
+<p>Returns a file descriptor with the value fd2. fd2 now refers to the same file
+as fd1, and the file that was previously referred to by fd2 is closed.</p>
+<p>...</p>
+<p>If successful, dup2() returns fd2.</p>
+<p>- <a href="https://www.ibm.com/docs/en/zos/3.1.0?topic=functions-dup2-duplicate-open-file-descriptor-another">https://www.ibm.com/docs/en/zos/3.1.0?topic=functions-dup2-duplicate-open-file-descriptor-another</a></p>
+</div>
+</div>
+<p>Under the hood <code>2&gt;&amp;1</code> redirection operation calls <code>dup2()</code> two times:</p>
+<pre><code class="language-bash">$ strace --follow-forks bash -c 'ls &gt;file 2&gt;&amp;1' 2&gt;&amp;1 | rg dup2
+
+[pid 70318] dup2(3, 1)                  = 1
+[pid 70318] dup2(1, 2)                  = 2
+</code></pre>
+<!-- ![FD timeline for 2>&1](images/fd-timeline.gif) -->
+<p>System call <code>dup2(3,1)</code> was made. File descriptor 1 duplicated onto the 3. I
+like think this as "move fd 1 to the whatever file that fd 3 points to". Since
+fd 3 points to the <code>file</code>, stdout(file descriptor 1) is now redirected to the <code>file</code>(fd 3).</p>
+<p><img src="images/after-dup2(3,1).png" alt="fd table after dup2(3,1)" /></p>
+<p>After second syscall <code>dup2(1, 2)</code> fd table looks like this:<br />
+<img src="images/after-dup2(1,2).png" alt="fd table after dup2(1,2)" /><br />
+Fd 2 now points to the file that fd1 points, which is <code>file</code>.</p>
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
+<div class="admonition-title">
+<div id="admonition-tip-title">
+<p>Tip</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
+</div>
+<div>
+<p style="font-size:1.3em">A mental model</p>
+It is important to know how `command >file 2>&1` works but you can think like
+this for remembering easily:  
+<ul>
+<li><code>&gt;file</code> is a shortcut to the <code>1&gt;file</code></li>
+<li><code>n&gt;file</code> redirects output of the file desriptor with the number <code>n</code> to the file <code>file</code></li>
+<li>If you want to redirect output of a file descriptor to the another file descriptor, use <code>n&gt;&amp;m</code></li>
+</ul>
+</div>
+</div>
+<p>References</p>
+<ul>
+<li>https://catonmat.net/bash-one-liners-explained-part-three</li>
+<li>https://pubs.opengroup.org/onlinepubs/9799919799/utilities/V3_chap02.html#tag_19_07</li>
+<li>https://www.gnu.org/software/bash/manual/html_node/Redirections.html</li>
+</ul>
+<hr />
 
                     </main>
 
